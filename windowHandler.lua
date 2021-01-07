@@ -10,7 +10,7 @@ setmetatable(windowHandler, {
 function windowHandler.new(w)
   local self = setmetatable({}, windowHandler)
   self.currentWindow = w
-  self.windows = nil
+  self.windows
   return self
 end
 
@@ -44,7 +44,7 @@ function windowHandler:windowsInhabit()
   local t, pfile = {}, io.popen('ls -a "Windows"')
   for filename in pfile:lines() do
     local file = string.sub(filename, 0, string.len(filename)-4)
-    t[file] = require("Windows/" .. file
+    t[file] = require("Windows/" .. file)
   end
   pfile:close()
   return t

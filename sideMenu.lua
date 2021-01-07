@@ -7,13 +7,17 @@ setmetatable(sideMenu, {
   end,
 })
 
-function sideMenu.new(t, w)
+function sideMenu.new(w)
   local self = setmetatable({}, sideMenu)
   self.first = nil
   self.last = nil
-  self.menu = menuInhabit(t)
+  self.menu = nil
   self.currentWindow = w
   return self
+end
+
+function sideMenu:setMenu(t)
+  self.menu = t
 end
 
 function sideMenu:action(x, y)

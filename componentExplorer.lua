@@ -6,7 +6,7 @@ local sMenu = require("sideMenu")
 local wHandler = require("windowHandler")
 
 local windowHandler = wHandler.new("Home")
-local sideMenu = sMenu.new(windowHandler:getWindows(), windowHandler:getCurrentWindow())
+local sideMenu = sMenu.new(windowHandler:getCurrentWindow())
 local topMenu = tMenu.new(true, windowHandler:getCurrentWindow())
 
 function initiate()
@@ -14,6 +14,7 @@ function initiate()
   windowHandler:setWindows(windowHandler:windowsInhabit())
   topMenu:initiate(component, draw)
   sideMenu:initiate(component, draw)
+  sideMenu:setMenu(windowHandler:getWindows())
   event.listen("touch", eventHandler)
 end
 

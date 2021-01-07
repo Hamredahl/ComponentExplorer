@@ -40,6 +40,7 @@ function sideMenu:action(x, y)
     return true
   end
 end
+end
 
 -- comment
 

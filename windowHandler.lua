@@ -10,8 +10,12 @@ setmetatable(windowHandler, {
 function windowHandler.new(w)
   local self = setmetatable({}, windowHandler)
   self.currentWindow = w
-  self.windows = windowsInhabit()
+  self.windows = nil
   return self
+end
+
+function windowHandler:setWindows(w)
+  self.windows = w
 end
 
 function windowHandler:setCurrentWindow(w)
@@ -39,14 +43,11 @@ end
 function windowHandler:windowsInhabit()
   local t, pfile = {}, io.popen('ls -a "Windows"')
   for filename in pfile:lines() do
-    t[deleteAppend(filename)] = request("Windows/" .. deleteAppend(filename))
+    local file = string.sub(filename, 0, string.len(filename)-4)
+    t[file] = require("Windows/" .. file
   end
   pfile:close()
   return t
-end
-
-function windowHandler:deleteAppend(s)
-  return string.sub(s, 0, string.len(s)-4)
 end
 
 return windowHandler

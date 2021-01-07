@@ -11,6 +11,7 @@ local topMenu = tMenu.new(true, windowHandler:getCurrentWindow())
 
 function initiate()
   draw.drawInit(component, 80, 23)
+  windowHandler:setWindows(windowHandler:windowsInhabit())
   topMenu:initiate(component, draw)
   sideMenu:initiate(component, draw)
   event.listen("touch", eventHandler)

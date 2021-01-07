@@ -71,8 +71,8 @@ function sideMenu:initiate(component, draw)
     draw:drawMenuElement(component, 1, v, 14, 3, 0xbbbbbb, k, 0x000000)
   end
   local _, arrowPos = component.gpu.getViewport() - 3
-  draw:drawMenuElement(component, 1, arrowPos, 7, 3, 0xbbbbbb, ▽, 0x000000)
-  draw:drawMenuElement(component, 8, arrowPos, 7, 3, 0xbbbbbb, △, 0x000000)
+  draw:drawMenuElement(component, 1, arrowPos, 7, 3, 0xbbbbbb, "▽", 0x000000)
+  draw:drawMenuElement(component, 8, arrowPos, 7, 3, 0xbbbbbb, "△", 0x000000)
 end
 
 function sideMenu:menuInhabit(t)

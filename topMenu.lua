@@ -40,8 +40,6 @@ function topMenu:action(x, y)
   end
 end
 
--- why???
-
 function topMenu:initiate(component, draw)
   draw:drawSimpleShape(component, 1, 1, 23, 3, 0xbbbbbb)
   draw:drawMenuElement(component, 1, 1, 14, 3, 0xbfbfbf, "Home", 0x000000)

@@ -40,9 +40,6 @@ function sideMenu:action(x, y)
     return true
   end
 end
-end
-
--- comment
 
 function sideMenu:update(component, draw)
   for k, v in pairs(self.menu) do

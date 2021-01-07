@@ -138,16 +138,16 @@ end
 
 function sideMenuInitiate()
   sideMenu = menuInhabit(windows)
-  local i, tSize = 0, table.getn(sideMenu)
+  local i, l = 0, nil
   for k, v in pairs(sideMenu) do
     i = i + 1
     if i == 1 then
       first = k
-    elseif i == tSize then
-      last = k
     end
     drawMenuElement(1, v, 14, 3, 0xbbbbbb, k, 0x000000)
+    l = k
   end
+  last = l
   drawMenuElement(1, 20, 7, 3, 0xbbbbbb, "▽", 0x000000)
   drawMenuElement(8, 20, 7, 3, 0xbbbbbb, "△", 0x000000)
 end
@@ -170,7 +170,7 @@ function windowHandlerAction(component, x, y)
 end
 
 function windowHandlerUpdate()
-  windows[currentWindow].update(draw)
+  windows[currentWindow].update(gpu)
 end
 
 function windowsInhabit()
@@ -186,8 +186,8 @@ end
 
 initiate()
 
-while on() do
-  windowUpdate()
+while on do
+  windowHandlerUpdate()
 end
 
 shutdown()

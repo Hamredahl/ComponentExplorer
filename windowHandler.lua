@@ -10,7 +10,7 @@ setmetatable(windowHandler, {
 function windowHandler.new(w)
   local self = setmetatable({}, windowHandler)
   self.currentWindow = w
-  self.windows
+  self.windows = nil
   return self
 end
 
@@ -34,8 +34,8 @@ function windowHandler:action(component, x, y)
   self.windows[self.currentWindow].action(component, x, y)
 end
 
-function windowHandler:update(component, draw)
-  self.windows[self.currentWindow].update(component, draw)
+function windowHandler:update(draw)
+  self.windows[self.currentWindow].update(draw)
 end
 
 -- No need to look below this --

@@ -45,12 +45,12 @@ function sideMenu:action(x, y)
   end
 end
 
-function sideMenu:update(component, draw)
+function sideMenu:update(draw)
   for k, v in pairs(self.menu) do
     if k == self.currentWindow then
-      draw:drawMenuElement(component, 1, v, 14, 3, 0xbfbfbf, k, 0x000000)
+      draw:drawMenuElement(1, v, 14, 3, 0xbfbfbf, k, 0x000000)
     else
-      draw:drawMenuElement(component, 1, v, 14, 3, 0xbbbbbb, k, 0x000000)
+      draw:drawMenuElement(1, v, 14, 3, 0xbbbbbb, k, 0x000000)
     end
   end
 end
@@ -64,7 +64,7 @@ function sideMenu:setCurrentWindow(w)
   update()
 end
 
-function sideMenu:initiate(component, draw)
+function sideMenu:initiate(draw)
   local i, tSize = 0, table.getn(self.menu)
   for k, v in pairs(self.menu) do
     i = i + 1
@@ -73,11 +73,10 @@ function sideMenu:initiate(component, draw)
     elseif i == tSize then
       self.last = k
     end
-    draw:drawMenuElement(component, 1, v, 14, 3, 0xbbbbbb, k, 0x000000)
+    draw:drawMenuElement(1, v, 14, 3, 0xbbbbbb, k, 0x000000)
   end
-  local _, arrowPos = component.gpu.getViewport() - 3
-  draw:drawMenuElement(component, 1, arrowPos, 7, 3, 0xbbbbbb, "▽", 0x000000)
-  draw:drawMenuElement(component, 8, arrowPos, 7, 3, 0xbbbbbb, "△", 0x000000)
+  draw:drawMenuElement(1, 20, 7, 3, 0xbbbbbb, "▽", 0x000000)
+  draw:drawMenuElement(8, 20, 7, 3, 0xbbbbbb, "△", 0x000000)
 end
 
 function sideMenu:menuInhabit(t)

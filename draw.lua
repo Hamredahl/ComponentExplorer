@@ -1,34 +1,47 @@
 local draw = {}
+draw.__index = draw
 
-function draw.drawInit(component, screenSizeX, screenSizeY)
-  component.gpu.setBackground(0x000000)
-  local x, y = component.gpu.maxResolution()
-  component.gpu.fill(0,0, x, y, " ")
-  component.gpu.setViewport(screenSizeX, screenSizeY)
+setmetatable(draw, {
+  __call = function (cls, ...)
+    return cls.new(...)
+  end,
+})
+
+function draw.new(g)
+  local self = setmetatable({}, draw)
+  self.gpu = g
+  return self
 end
 
-function draw.drawShutdown(component)
-  component.gpu.setBackground(0x000000)
-  local x, y = component.gpu.maxResolution()
-  component.gpu.fill(0,0, x, y, " ")
-  component.gpu.setViewport(x, y)
+function draw:drawInit(screenSizeX, screenSizeY)
+  self.gpu.setBackground(0x000000)
+  local x, y = self.gpu.maxResolution()
+  self.gpu.fill(0,0, x, y, " ")
+  self.gpu.setViewport(screenSizeX, screenSizeY)
 end
 
-function draw.drawMenuElement(component, x, y, xSize, ySize, color, t, tColor)
-  component.gpu.setBackground(color)
-  component.gpu.fill(x, y, xSize, ySize, " ")
-  component.gpu.setForeground(tColor)
-  component.gpu.set(x+(xSize-string.len(t)/2), y+((ySize-1)/2), t)
+function draw:drawShutdown()
+  self.gpu.setBackground(0x000000)
+  local x, y = self.gpu.maxResolution()
+  self.gpu.fill(0,0, x, y, " ")
+  self.gpu.setViewport(x, y)
 end
 
-function draw.drawSimpleShape(component, x, y, xSize, ySize, color)
-  component.gpu.setBackground(color)
-  component.gpu.fill(x, y, xSize, ySize, " ")
+function draw:drawMenuElement(x, y, xSize, ySize, color, t, tColor)
+  self.gpu.setBackground(color)
+  self.gpu.fill(x, y, xSize, ySize, " ")
+  self.gpu.setForeground(tColor)
+  self.gpu.set(x+(xSize-string.len(t)/2), y+((ySize-1)/2), t)
 end
 
-function draw.setSimpleText(component, x, y, t, tColor)
-  component.gpu.setForeground(tColor)
-  component.gpu.set(x, y, t)
+function draw:drawSimpleShape(x, y, xSize, ySize, color)
+  self.gpu.setBackground(color)
+  self.gpu.fill(x, y, xSize, ySize, " ")
+end
+
+function draw:setSimpleText(x, y, t, tColor)
+  self.gpu.setForeground(tColor)
+  self.gpu.set(x, y, t)
 end
 
 return draw

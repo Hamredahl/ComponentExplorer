@@ -41,6 +41,8 @@ function sideMenu:action(x, y)
   end
 end
 
+-- comment
+
 function sideMenu:update(component, draw)
   for k, v in pairs(self.menu) do
     if k == self.currentWindow then

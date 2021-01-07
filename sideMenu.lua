@@ -23,18 +23,18 @@ function sideMenu:action(x, y)
         self.currentWindow = k
       end
     end
-  return true
+    return true
   elseif x <= 7 then
     for k, v in pairs(self.menu) do
       if self.menu[self.last] > 17 then
         self.menu[k] = v - 3
       end
     end
-  return true
+    return true
   else
     for k, v in pairs(self.menu) do
       if self.menu[self.first] < 3 then
-      self.menu[k] = v + 3
+        self.menu[k] = v + 3
       end
     end
     return true

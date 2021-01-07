@@ -73,7 +73,7 @@ end
 
 -- topMenu
 
-function topMenuUpdate(draw)
+function topMenuUpdate()
   local tempC = 0xbbbbbb
   if currentWindow == "Home" then
     tempC = 0xbfbfbf
@@ -112,7 +112,7 @@ function sideMenuAction(x, y)
     return true
   elseif x <= 7 then
     for k, v in pairs(sideMenu) do
-      if sideMenu[last] > 17 then
+      if sideMenu[last] > 19 then
         sideMenu[k] = v - 3
       end
     end
@@ -135,6 +135,9 @@ function sideMenuUpdate()
       drawMenuElement(1, v, 14, 3, 0xbbbbbb, k, 0x000000)
     end
   end
+  topMenuUpdate()
+  drawMenuElement(1, 22, 7, 3, 0xbbbbbb, "  ▽", 0x000000)
+  drawMenuElement(8, 22, 7, 3, 0xbbbbbb, "  △", 0x000000)
 end
 
 function sideMenuInitiate()

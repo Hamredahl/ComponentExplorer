@@ -32,12 +32,13 @@ function sideMenu:action(x, y)
     end
   return true
   else
-  for k, v in pairs(self.menu) do
-    if self.menu[self.first] < 3 then
+    for k, v in pairs(self.menu) do
+      if self.menu[self.first] < 3 then
       self.menu[k] = v + 3
+      end
     end
+    return true
   end
-  return true
 end
 
 function sideMenu:update(component, draw)

@@ -93,10 +93,11 @@ function topMenuAction(x, y)
   end
 end
 
-function topMenuInitiate(draw)
-  drawSimpleShape(1, 1, 23, 3, 0xbbbbbb)
+function topMenuInitiate()
+  local x, _ = get.getViewport()
+  drawSimpleShape(1, 1, x, 3, 0xbbbbbb)
   drawMenuElement(1, 1, 14, 3, 0xbfbfbf, "Home", 0x000000)
-  drawMenuElement(17, 1, 7, 3, 0xbbbbbb, "X", 0x000000)
+  drawMenuElement(x - 6, 1, 7, 3, 0xbbbbbb, "X", 0x000000)
 end
 
 -- sideMenu

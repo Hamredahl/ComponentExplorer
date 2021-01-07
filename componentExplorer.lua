@@ -58,7 +58,7 @@ function drawMenuElement(x, y, xSize, ySize, color, t, tColor)
   gpu.setBackground(color)
   gpu.fill(x, y, xSize, ySize, " ")
   gpu.setForeground(tColor)
-  gpu.set(x+(xSize-string.len(t)/2), y+((ySize-1)/2), t)
+  gpu.set(x+((xSize-string.len(t))/2), y+((ySize-1)/2), t)
 end
 
 function drawSimpleShape(x, y, xSize, ySize, color)
@@ -75,7 +75,7 @@ end
 
 function topMenuUpdate(draw)
   local tempC = 0xbbbbbb
-  if currentWindow() == "Home" then
+  if currentWindow == "Home" then
     tempC = 0xbfbfbf
   end
   drawMenuElement(1, 1, 14, 3, tempC, "Home", 0x000000)
@@ -85,7 +85,7 @@ function topMenuAction(x, y)
   if x < 14 then
     currentWindow = "Home"
     return true
-  elseif x > 17 then
+  elseif x > gpu.getViewport() - 7 then
     on = false
     return false
   else
@@ -94,7 +94,7 @@ function topMenuAction(x, y)
 end
 
 function topMenuInitiate()
-  local x, _ = get.getViewport()
+  local x, _ = gpu.getViewport()
   drawSimpleShape(1, 1, x, 3, 0xbbbbbb)
   drawMenuElement(1, 1, 14, 3, 0xbfbfbf, "Home", 0x000000)
   drawMenuElement(x - 6, 1, 7, 3, 0xbbbbbb, "X", 0x000000)
@@ -149,8 +149,8 @@ function sideMenuInitiate()
     l = k
   end
   last = l
-  drawMenuElement(1, 20, 7, 3, 0xbbbbbb, "▽", 0x000000)
-  drawMenuElement(8, 20, 7, 3, 0xbbbbbb, "△", 0x000000)
+  drawMenuElement(1, 20, 7, 3, 0xbbbbbb, "  ▽", 0x000000)
+  drawMenuElement(8, 20, 7, 3, 0xbbbbbb, "  △", 0x000000)
 end
 
 function menuInhabit(t)
@@ -171,6 +171,8 @@ function windowHandlerAction(component, x, y)
 end
 
 function windowHandlerUpdate()
+  local x, y = getViewport()
+  drawSimpleShape(15, 4, x - 14, y - 3, 0x000000)
   windows[currentWindow].update(gpu)
 end
 
@@ -189,6 +191,7 @@ initiate()
 
 while on do
   windowHandlerUpdate()
+  os.sleep(0.1)
 end
 
 shutdown()
